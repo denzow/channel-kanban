@@ -1,0 +1,3 @@
+.git
+docker/mysql/backup_data_dir
+docker-cache

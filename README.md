@@ -1,2 +1,2 @@
-# channel-kanban
-Django Channels をつかったカンバンを作ってみる
+# Channel-Kanban
+
