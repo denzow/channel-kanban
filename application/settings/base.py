@@ -109,7 +109,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+
 STATIC_URL = '/static/'
+# Static file settings
+STATIC_ROOT = os.path.join(APP_ROOT_PATH, 'staticfiles')
+STATICFILES_LOCATION = os.path.join(APP_ROOT_PATH, 'staticfiles')
 
 # ASGIの起点を指定
 ASGI_APPLICATION = 'views.routing.application'
