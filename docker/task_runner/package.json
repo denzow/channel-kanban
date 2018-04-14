@@ -15,7 +15,8 @@
     "style-loader": "^0.20.3",
     "vue": "^2.5.16",
     "vue2-admin-lte": "^0.4.3",
-    "vue2-google-maps": "^0.8.11"
+    "vue2-google-maps": "^0.8.11",
+    "vuedraggable": "^2.16.0"
   },
   "devDependencies": {
     "babel-loader": "^7.1.4",

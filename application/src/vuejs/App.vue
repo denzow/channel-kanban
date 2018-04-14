@@ -1,16 +1,45 @@
 
 <template>
-    <div class="wrapper">
-        hello
+    <div class="kanban-base">
+        <pipe-line :pipeLine="pipeLine" v-for="(pipeLine, index) in pipeLineList"></pipe-line>
     </div>
 </template>
 
 <script>
+    import PipeLine from './components/PipeLine.vue';
+
     export default {
         name: 'app',
         components: {
-
+            PipeLine,
+        },
+        data() {
+            return {
+                pipeLineList: [
+                    {
+                        name: '1st',
+                        cards: [
+                            'a',
+                            'b',
+                            'c'
+                        ]
+                    },
+                    {
+                        name: '2nd',
+                        cards: [
+                            'd',
+                            'e',
+                        ]
+                    }
+                ],
+            }
         }
     }
 </script>
-<style></style>
+<style scoped>
+    .kanban-base {
+        display: flex;
+    }
+    
+    
+</style>
