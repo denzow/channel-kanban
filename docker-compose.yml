@@ -17,6 +17,23 @@ services:
     links:
       - redis
 
+  websocket:
+    build:
+      context: .
+      dockerfile: Dockerfile_websocket
+    command: '/app/docker/websocket/start-server.sh'
+    volumes:
+      - .:/app
+    ports:
+      - "4000:3000"
+    environment:
+      - REDIS_HOSTNAME=redis
+      - REDIS_DB_NUMBER=0
+      - REDIS_DB_PREFIX=local
+      - PYTHONUNBUFFERED=1
+    links:
+      - redis
+
   service_nginx:
     build:
       context: ./docker/service_nginx
@@ -42,5 +59,3 @@ services:
       DIST_PATH: '/app/work/application/staticfiles/vuejs'
     volumes:
       - .:/app/work/
-    ports:
-      - "9000:3000"

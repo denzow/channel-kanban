@@ -19,4 +19,5 @@ pytz==2018.3
 six==1.11.0
 Twisted==17.9.0
 txaio==2.9.0
+uWSGI==2.0.17
 zope.interface==4.4.3
