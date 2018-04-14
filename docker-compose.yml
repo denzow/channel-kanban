@@ -31,3 +31,16 @@ services:
     ports:
       - "6379:6379"
 
+  task_runner:
+    build:
+      context: ./docker/task_runner
+    command: 'sh /app/start-watch.sh'
+    environment:
+      CONTEXT_PATH: '/app/application/src/'
+      ENTRY_NAME: 'app'
+      ENTRY_PATH: '/app/application/src/vuejs/app.js'
+      DIST_PATH: '/app/application/staticfiles/vuejs'
+    volumes:
+      - .:/app/application
+    ports:
+      - "9000:3000"
