@@ -28,16 +28,6 @@ const store = {
             console.log('set_data', state, payload);
             this.state.pipeLineList = payload.kanban;
         },
-        update(state, payload) {
-            console.log('update', state, payload);
-            let pipeLineId = payload.pipeLineId;
-            let newCardList = payload.newCardList;
-            for(let pipeLine of state.pipeLineList){
-                if(pipeLine.id === pipeLineId){
-                    pipeLine.cards = newCardList;
-                }
-            }
-        }
     },
     plugins: [plugin]
 };

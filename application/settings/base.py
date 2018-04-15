@@ -22,7 +22,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'channels',
-    'modules.chat',
     'modules.kanban',
     'django.contrib.admin',
     'django.contrib.auth',
