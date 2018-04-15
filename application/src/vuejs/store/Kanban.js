@@ -1,55 +1,5 @@
 import createWebSocketPlugin from './WebSocketPlugin';
 
-const DEFAULT_DATA = [
-            {
-                name: 'TODO',
-                id: 1,
-                cards: [
-                    {
-                        id: 1,
-                        content: 'a',
-                    },
-                    {
-                        id: 2,
-                        content: 'b',
-                    },
-                    {
-                        id: 3,
-                        content: 'c',
-                    },
-                ]
-            },
-            {
-                name: 'DOING',
-                id: 2,
-                cards: [
-                    {
-                        id: 4,
-                        content: 'd',
-                    },
-                    {
-                        id: 5,
-                        content: 'e',
-                    },
-                ]
-            },
-            {
-                name: 'DONE',
-                id: 3,
-                cards: [
-                    {
-                        id: 6,
-                        content: 'f',
-                    },
-                    {
-                        id: 7,
-                        content: 'g',
-                    },
-                ]
-            },
-
-        ];
-
 const socket = new WebSocket('ws://' + window.location.host + '/ws/kanban/');
 const plugin = createWebSocketPlugin(socket);
 
@@ -59,9 +9,17 @@ const store = {
         pipeLineList: [],
     },
     actions: {
+        add_pipeline(context, payload){
+            console.log('action add_pipeline called', payload);
+        },
+        add_card(context, payload){
+            console.log('action add_card called', payload);
+        },
         update(context, payload){
+            // 実際のcommitはplugin側にたくしている
+            // 定義しないとdispatchできないので・・・
             console.log('action update called', payload);
-            //context.commit('wsUpdateList', payload)
+            //context.commit('update', payload)
         }
     },
     mutations: {

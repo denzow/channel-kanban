@@ -1,8 +1,11 @@
 <template>
     <div class="pipeline">
-        <div class="pipeline-title">{{pipeLine.title}} count: {{pipeLine.cards.length}}</div>
+        <div class="pipeline-title">
+            {{pipeLine.title}} count: {{pipeLine.cards.length}}
+            <button class="close-button" @click="addCard">+</button>
+        </div>
         <div class="card-list">
-            <draggable @start="onStart" @end="onEnd" :options="options" v-model="cards" class="card-draggable-base">
+            <draggable :options="options" v-model="cards" class="card-draggable-base">
                 <card :card="card" v-for="(card, i) in cards"></card>
             </draggable>
         </div>
@@ -22,14 +25,16 @@
             draggable,
         },
         methods: {
-            onStart: function (event) {
-//                console.log('start', event);
-            },
-            onEnd: function (event) {
-//                console.log('end', event);
-//                console.log('from', event.from, event.oldIndex);
-//                console.log(event.item);
-//                console.log('to', event.to, event.newIndex,);
+            addCard(){
+                let title = window.prompt('title');
+                if(title === undefined || title === null){
+                    return;
+                }
+                this.$store.dispatch('add_card', {
+                    'pipeLineId': this.pipeLine.id,
+                    'title': title,
+                    'order': this.pipeLine.cards.length,
+                });
             }
         },
         computed: {
@@ -71,6 +76,12 @@
         text-align: center;
         padding: 5px;
         border: solid;
+    }
+    .close-button {
+        width: 30px;
+        height: 30px;
+        border: solid;
+        cursor: pointer;
     }
 
 </style>

@@ -33,3 +33,18 @@ def update_kanban(pipeline_id, card_id_list):
         print(card)
 
 
+def add_card(pipeline_id, title, order):
+    Card.create(
+        pipeline_id=pipeline_id,
+        title=title,
+        content='content_{}'.format(title),
+        order=order,
+    )
+
+
+def add_pipeline(kanban_id, title, order):
+    PipeLine.create(
+        kanban_id=kanban_id,
+        title=title,
+        order=order,
+    )

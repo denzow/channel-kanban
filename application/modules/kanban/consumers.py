@@ -14,7 +14,9 @@ class KanbanConsumer(AsyncWebsocketConsumer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.type_map = {
-            'update': self._update
+            'update': self._update,
+            'add_card': self._add_card,
+            'add_pipeline': self._add_pipeline,
         }
 
     async def connect(self):
@@ -65,7 +67,36 @@ class KanbanConsumer(AsyncWebsocketConsumer):
             pipeline_id=payload['pipeLineId'],
             card_id_list=[x['id'] for x in payload['newCardList']]
         )
+        # Send message to room group
+        await self.channel_layer.group_send(
+            self.kanban_name,
+            {
+                'type': 'updated',
+                'payload': {}
+            }
+        )
 
+    async def _add_card(self, payload):
+        kanban_sv.add_card(
+            pipeline_id=payload['pipeLineId'],
+            title=payload['title'],
+            order=payload['order'],
+        )
+        # Send message to room group
+        await self.channel_layer.group_send(
+            self.kanban_name,
+            {
+                'type': 'updated',
+                'payload': {}
+            }
+        )
+
+    async def _add_pipeline(self, payload):
+        kanban_sv.add_pipeline(
+            kanban_id=payload['kanbanId'],
+            title=payload['title'],
+            order=payload['order'],
+        )
         # Send message to room group
         await self.channel_layer.group_send(
             self.kanban_name,

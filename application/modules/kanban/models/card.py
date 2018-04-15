@@ -21,5 +21,9 @@ class Card(models.Model):
         }
 
     @classmethod
+    def create(cls, **params):
+        return cls.objects.create(**params)
+
+    @classmethod
     def get_by_id(cls, card_id):
         return cls.objects.get(pk=card_id)

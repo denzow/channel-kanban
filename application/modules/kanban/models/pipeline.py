@@ -24,5 +24,9 @@ class PipeLine(models.Model):
         }
 
     @classmethod
+    def create(cls, **params):
+        return cls.objects.create(**params)
+
+    @classmethod
     def get_list_by_kanban_id(cls, kanban_id):
         return cls.objects.filter(kanban_id=kanban_id).order_by('order')
