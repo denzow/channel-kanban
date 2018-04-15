@@ -2,7 +2,7 @@
     <div class="pipeline">
         <div class="pipeline-title">{{pipeLine.title}} count: {{pipeLine.cards.length}}</div>
         <div class="card-list">
-            <draggable @start="onStart" @end="onEnd" :options="options" v-model="cards">
+            <draggable @start="onStart" @end="onEnd" :options="options" v-model="cards" class="card-draggable-base">
                 <card :card="card" v-for="(card, i) in cards"></card>
             </draggable>
         </div>
@@ -58,7 +58,7 @@
 
 </script>
 <style scoped>
-    .card-list {
+    .card-draggable-base {
         min-height: 100px;
     }
     .pipeline {
