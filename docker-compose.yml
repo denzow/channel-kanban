@@ -16,6 +16,7 @@ services:
       - PYTHONUNBUFFERED=1
     links:
       - redis
+      - db
 
   websocket:
     build:
@@ -33,6 +34,7 @@ services:
       - PYTHONUNBUFFERED=1
     links:
       - redis
+      - db
 
   service_nginx:
     build:
@@ -47,6 +49,14 @@ services:
     build: ./docker/redis
     ports:
       - "6379:6379"
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: kanban
 
   task_runner:
     build:
