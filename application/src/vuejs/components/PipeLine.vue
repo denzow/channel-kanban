@@ -1,6 +1,6 @@
 <template>
     <div class="pipeline">
-        <div class="pipeline-title">{{pipeLine.name}} {{pipeLine.cards.length}}</div>
+        <div class="pipeline-title">{{pipeLine.name}} count: {{pipeLine.cards.length}}</div>
         <div class="card-list">
             <draggable @start="onStart" @end="onEnd" :options="options" v-model="cards">
                 <card :card="card" v-for="(card, i) in cards"></card>
@@ -64,7 +64,7 @@
     .pipeline {
         margin: 5px;
         padding: 5px;
-        width: 100px;
+        width: 200px;
         border: solid;
     }
     .pipeline-title {
