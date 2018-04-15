@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        {{ card }}
+        {{ card.content }}
     </div>
 </template>
 <script>
@@ -18,6 +18,7 @@
         margin: 5px;
         padding: 5px;
         border: solid;
+        cursor: move;
     }
 
 </style>

@@ -7,6 +7,7 @@
 
 <script>
     import PipeLine from './components/PipeLine.vue';
+    import Vue from 'vue';
 
     export default {
         name: 'app',
@@ -15,24 +16,15 @@
         },
         data() {
             return {
-                pipeLineList: [
-                    {
-                        name: '1st',
-                        cards: [
-                            'a',
-                            'b',
-                            'c'
-                        ]
-                    },
-                    {
-                        name: '2nd',
-                        cards: [
-                            'd',
-                            'e',
-                        ]
-                    }
-                ],
             }
+        },
+        computed: {
+            pipeLineList(){
+                console.log(this.$store.state.pipeLineList);
+                return this.$store.state.pipeLineList;
+            },
+        },
+        methods: {
         }
     }
 </script>
