@@ -1,3 +1,4 @@
+import createWebSocketPlugin from './WebSocketPlugin';
 
 const DEFAULT_DATA = [
             {
@@ -49,18 +50,18 @@ const DEFAULT_DATA = [
 
         ];
 
+const socket = new WebSocket('ws://' + window.location.host + '/ws/chat/aa/');
+const plugin = createWebSocketPlugin(socket);
+
 
 const store = {
     state: {
         pipeLineList: DEFAULT_DATA,
     },
     actions: {
-        reset(context){
-            console.log('reset');
-            context.commit('resetList');
-        },
         update(context, payload){
-            context.commit('updateList', payload)
+            console.log('action update called', payload);
+            //context.commit('wsUpdateList', payload)
         }
     },
     mutations: {
@@ -76,7 +77,8 @@ const store = {
 
 
         }
-    }
+    },
+    plugins: [plugin]
 };
 
 export default store;
