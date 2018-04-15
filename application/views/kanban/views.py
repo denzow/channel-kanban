@@ -4,11 +4,7 @@ from django.utils.safestring import mark_safe
 import json
 
 
-def index(request):
-    return render(request, 'kanban/index.html', {})
-
-
-def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
+def index(request, kanban_id):
+    return render(request, 'kanban/index.html', {
+        'kanban_id': kanban_id
     })

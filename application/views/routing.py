@@ -8,7 +8,7 @@ application = ProtocolTypeRouter({
     # (http->django views is added by default)
     'websocket': AuthMiddlewareStack(
         URLRouter([
-            path('ws/kanban/', kanban_consumers.KanbanConsumer),
+            path('ws/kanban/<int:kanban_id>', kanban_consumers.KanbanConsumer),
             path('ws/chat/<str:room_name>/', chat_consumers.ChatConsumer),
 
         ])

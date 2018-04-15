@@ -11,3 +11,12 @@ class Kanban(models.Model):
     @classmethod
     def get_by_id(cls, kanban_id):
         return cls.objects.get(pk=kanban_id)
+
+    @classmethod
+    def get_or_create(cls, kanban_id):
+        try:
+            return cls.get_by_id(kanban_id)
+        except Exception:
+            return Kanban.objects.create(
+                title='new'
+            )

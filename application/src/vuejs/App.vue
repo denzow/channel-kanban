@@ -24,6 +24,9 @@
                 console.log(this.$store.state.pipeLineList);
                 return this.$store.state.pipeLineList;
             },
+            kanbanId(){
+                return this.$store.state.kanbanId;
+            }
         },
         methods: {
             addPipeLine(e){
@@ -32,7 +35,7 @@
                     return;
                 }
                 this.$store.dispatch('add_pipeline', {
-                    'kanbanId': 1,
+                    'kanbanId': this.kanbanId,
                     'title': title,
                     'order': this.pipeLineList.length,
                 });

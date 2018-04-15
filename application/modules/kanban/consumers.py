@@ -2,7 +2,6 @@
 import json
 
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.db import database_sync_to_async
 from modules.kanban import service as kanban_sv
 
 
@@ -20,7 +19,7 @@ class KanbanConsumer(AsyncWebsocketConsumer):
         }
 
     async def connect(self):
-        self.kanban_id = 1  # とりあえず1で固定
+        self.kanban_id = self.scope['url_route']['kwargs']['kanban_id']
         self.kanban_name = 'kanban_{}'.format(self.kanban_id)
 
         # Join room group
@@ -45,8 +44,6 @@ class KanbanConsumer(AsyncWebsocketConsumer):
 
     async def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
-        from pprint import pprint
-        pprint(text_data_json)
         message_type = text_data_json['type']
         payload = text_data_json['payload']
         # typeに応じた処理へディスパッチ

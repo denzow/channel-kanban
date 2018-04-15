@@ -1,12 +1,13 @@
 import createWebSocketPlugin from './WebSocketPlugin';
 
-const socket = new WebSocket('ws://' + window.location.host + '/ws/kanban/');
+const socket = new WebSocket('ws://' + window.location.host + '/ws' + window.location.pathname);
 const plugin = createWebSocketPlugin(socket);
 
 
 const store = {
     state: {
         pipeLineList: [],
+        kanbanId: parseInt(window.location.pathname.split('kanban/')[1])
     },
     actions: {
         add_pipeline(context, payload){
