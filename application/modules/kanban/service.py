@@ -15,3 +15,21 @@ def get_whole_json(kanban_id):
         })
 
     return result
+
+
+def update_kanban(pipeline_id, card_id_list):
+    """
+    パイプライン内のカードを更新する
+    :return:
+    """
+    print('update_kanban')
+    order = 0
+    for card_id in card_id_list:
+        card = Card.get_by_id(card_id=card_id)
+        card.order = order
+        card.pipeline_id = pipeline_id
+        card.save()
+        order += 1
+        print(card)
+
+

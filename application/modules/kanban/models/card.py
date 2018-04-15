@@ -19,3 +19,7 @@ class Card(models.Model):
             'title': self.title,
             'content': self.content,
         }
+
+    @classmethod
+    def get_by_id(cls, card_id):
+        return cls.objects.get(pk=card_id)

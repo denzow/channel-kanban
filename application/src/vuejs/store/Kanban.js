@@ -50,13 +50,13 @@ const DEFAULT_DATA = [
 
         ];
 
-const socket = new WebSocket('ws://' + window.location.host + '/ws/chat/aa/');
+const socket = new WebSocket('ws://' + window.location.host + '/ws/kanban/');
 const plugin = createWebSocketPlugin(socket);
 
 
 const store = {
     state: {
-        pipeLineList: DEFAULT_DATA,
+        pipeLineList: [],
     },
     actions: {
         update(context, payload){
@@ -65,8 +65,12 @@ const store = {
         }
     },
     mutations: {
-        updateList (state, payload) {
-            console.log('updateList', state, payload);
+        set_data(state, payload){
+            console.log('set_data', state, payload);
+            this.state.pipeLineList = payload.kanban;
+        },
+        update(state, payload) {
+            console.log('update', state, payload);
             let pipeLineId = payload.pipeLineId;
             let newCardList = payload.newCardList;
             for(let pipeLine of state.pipeLineList){
@@ -74,8 +78,6 @@ const store = {
                     pipeLine.cards = newCardList;
                 }
             }
-
-
         }
     },
     plugins: [plugin]
